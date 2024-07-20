@@ -9,11 +9,15 @@
   function addbooks() {
     books = [...books, { name: '', Read: false }]
   }
+
+  function savebooks() {
+    localStorage.todos = JSON.stringify(books)
+  }
 </script>
 
 <main>
   <button on:click={addbooks}> Add new book</button>
-
+  <button on:click={savebooks}>Save books</button>
   {#each books as book, index}
     <div class="bookread">
       <input bind:value={books[index].name} />
