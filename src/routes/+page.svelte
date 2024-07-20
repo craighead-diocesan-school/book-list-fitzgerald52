@@ -1,15 +1,29 @@
 <script>
-  import Header from '$lib/Header.svelte'
+  let books = [
+    { name: 'harry potter', read: 'false' },
+    { name: 'harry potter 2', read: 'false' },
+  ]
+
+  let Read = false
+  // adds book as and object to array saying the name and that the book has not been read
+  function addbooks() {
+    books = [...books, { name: '', Read: false }]
+  }
 </script>
 
-<Header />
-
 <main>
-  <h2>SvelteKit</h2>
+  <button on:click={addbooks}> Add new book</button>
 
-  <p>Welcome to coding with SvelteKit, a modern JavaScript framework that makes it easy to code great apps.</p>
+  {#each books as book, index}
+    <div class="bookread">
+      <input bind:value={books[index].name} />
+      <input type="checkbox" bind:checked={books[index].Read} />
+    </div>
+  {/each}
 </main>
 
-<footer>
-  <p>&copy; Craighead Diocesan School 2024</p>
-</footer>
+<style>
+  .book {
+    display: block;
+  }
+</style>
